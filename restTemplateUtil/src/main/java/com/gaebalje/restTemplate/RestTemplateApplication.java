@@ -54,6 +54,10 @@ class apiAccessConfiguration{
 	
 	private RestOperations getRestTemplate(HttpComponentsClientHttpRequestFactory factory) {
 		RestTemplate restTemplate = new RestTemplate(factory);
+		
+		/*
+		 * restTemplate message converter
+		 * 
 		ByteArrayHttpMessageConverter byteArrayHttpMessageConverter = new ByteArrayHttpMessageConverter();
 		StringHttpMessageConverter stringMessageConverter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
 		ResourceHttpMessageConverter resourceHttpMessageConverter = new ResourceHttpMessageConverter();
@@ -72,7 +76,11 @@ class apiAccessConfiguration{
 		converters.add(formHttpMessageConverter);
 		
 		restTemplate.setMessageConverters(converters);
+		*/
+		
 		/*
+		 * restTemplate responseHandler 
+		 * 
 		ResponseErrorHandler responseHandler = new ResponseErrorHandler() {
 			@Override
 			public boolean hasError(ClientHttpResponse response) throws IOException {
@@ -98,6 +106,10 @@ class apiAccessConfiguration{
         return getRestTemplate(factory);
 	}
 	
+	/**
+	 * ssocioAPIRestTemplate
+	 * @return
+	 */
 	@Bean(name="ssocioAPIRestTemplateUtil", autowire = Autowire.BY_NAME)
 	public IRestTemplate ssocioAPIRestTemplateUtil(){
 		return new SsocioAPIRestTemplateUtil(
@@ -107,6 +119,10 @@ class apiAccessConfiguration{
 				, env.getProperty("ssocioAPI.accessPathVariable", "-1"));
 	}
 	
+	/**
+	 * searchAPIRestTemplate
+	 * @return
+	 */
 	@Bean(name="searchAPIRestTemplateUtil", autowire = Autowire.BY_NAME)
 	public IRestTemplate searchAPIRestTemplateUtil(){
 		return new SearchAPIRestTemplateUtil(
