@@ -19,7 +19,12 @@ public class SsocioAPIRestTemplateUtil extends RestOperationImpl implements IRes
 		this.port = port;
 		this.accessMember = accessMember;
 	}
-
+	public String getAccessMember() {
+		return accessMember;
+	}
+	public void setAccessMember(String accessMember) {
+		this.accessMember = accessMember;
+	}
 	@Override
 	public String getCallUrl(String restUrl) {
 		StringBuilder sb = new StringBuilder();
