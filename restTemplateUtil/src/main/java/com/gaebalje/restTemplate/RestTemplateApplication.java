@@ -2,13 +2,10 @@ package com.gaebalje.restTemplate;
 
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestOperations;
@@ -20,18 +17,20 @@ import com.gaebalje.restTemplate.common.SearchAPIRestTemplateUtil;
 import com.gaebalje.restTemplate.common.SsocioAPIRestTemplateUtil;
 
 @SpringBootApplication
-@EnableAutoConfiguration
-@ComponentScan
 public class RestTemplateApplication {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(RestTemplateApplication.class, args);
+//		SpringApplication.run(RestTemplateApplication.class, args);
+		
+		new SpringApplicationBuilder(RestTemplateApplication.class)
+		.properties("spring.config.location=classpath:/application.properties")
+		.run(args);
 	}
 	
 }
 
 @Configuration
-@PropertySource(value = { "classpath:application.properties" })
+//@PropertySource(value = { "classpath:application.properties" })
 class apiAccessConfiguration{
 	
 	@Autowired
